@@ -1,0 +1,10 @@
+.ToDoList {
+	margin: 50px;
+	font-size: 20px;
+}
+
+#app-title {
+	color: blue;
+	text-align: center;
+	margin: auto;
+}
