@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {observer, inject} from "mobx-react";
 import {observable, autorun, computed} from "mobx";
-import ToDoStore from "./ToDoStore";
+import toDoStore from "./toDoStore";
+import style from "./style";
 
 
 @observer
@@ -10,7 +11,6 @@ class ShowToDos extends Component {
 		super(props);
 	}
 
-	// TODO: this shit ain't working
 	getStyle(prioType) {
 		let color = "";
 		let fontWeight = "";
@@ -30,35 +30,67 @@ class ShowToDos extends Component {
 			fontStyle = "italic";
 		}
 
-		// TODO: why do i even need return
+		// return here all style-elements which got changed above
 		return {
-			color: prioType == this.prioType ? color : "",
-			fontStyle: prioType == this.prioType ? fontStyle : "",
-			fontWeight: prioType == this.prioType ? fontWeight : ""
+			color,
+			fontStyle,
+			fontWeight
 		}
 	}
 
-	todoFilter() {
-		// let filterObject = document.getElementById("filter");
-		let filterValue = event.target.value;
-		ToDoStore.filter = event.target.value;
-		console.log(ToDoStore.filter);
+	todoFilter(value) {
+		toDoStore.filter = value;
+		// console.log(toDoStore.filter);
+	}
+
+	toggleComplete (todo) {
+		todo.complete = !todo.complete;
+	}
+
+	// sort by priority
+	sortList(todoList) {
+		if (toDoStore.sorting === "priority") {
+			// assemble different priority tasks in individual groups
+			const aHighPrioTasks = todoList.filter (todo => todo.prio == "high");
+			const bLowPrioTasks = todoList.filter (todo => todo.prio == "low");
+			const cRecurringPrioTasks = todoList.filter (todo => todo.prio == "recurring");
+			const dNonePrioTasks = todoList.filter (todo => todo.prio == "none");
+			return [].concat(aHighPrioTasks, bLowPrioTasks, cRecurringPrioTasks, dNonePrioTasks);
+		} else if (toDoStore.sorting === "ABC") {
+			return todoList.sort((a, b) =>  a-b)
+		// } else if (toDoStore.sorting === "none") {
+		// 	return todoList.sort()
+		}
+		return todoList;
 	}
 
 	render () {
-		const {todos, filter} = ToDoStore;
-		const todoList =  todos.map( (todo, index, prioType) => {
-			 {let prioType=todo.prio} 			
-			return ( 
-				<li style={this.getStyle(prioType)} key={index}>{todo.title} <br></br> {todo.note}</li>
-			)  
+		// const {todos} = toDoStore;		// use this instead of toDoStore.whatever if more of the toDoStore is used
+		//const shouldSort = true;
+		const sortedList = this.sortList(toDoStore.filteredTodos, toDoStore.sorting);
+		const todoList =  sortedList.map( (todo, index) => {
+			return (
+				<li style={this.getStyle(todo.prio)} key={index}> 
+					<Input type="checkbox" value={todo.complete} checked={todo.complete} onChange={this.toggleComplete.bind(this, todo)} />
+					{todo.title}<br></br>{todo.note}
+				</li>
+			)
 		})
+
 
 		return (
 			<div className="ShowToDos">
-				<h1>current todos</h1>
-				<div>{ToDoStore.filter}</div>
-				<input id="filter" className="todofilter" onChange={event => ToDoStore.filter = event.target.value} placeholder="filter todos" />
+				<h1 className="title">Current Tasks</h1>
+				{/* <div>{toDoStore.filter}</div> */}
+				<input id="filter" className="todofilter" value={toDoStore.filter} onChange={(event) => this.todoFilter(event.target.value)} placeholder="filter tasks" />
+				<a href="#" onClick={toDoStore.clearComplete}>*Clear completed tasks*</a>
+
+				<div className="list-sorting" onChange={e => toDoStore.sorting = e.target.value} >
+					<input type="radio" name="sorting" value="none"  defaultChecked/> <Label>No sorting</Label>
+					<input type="radio" name="sorting" value="priority" /> <Label>Sort tasks by priority</Label>
+					<input  type="radio" name="sorting" value="ABC" /> <Label>Sort tasks alphabetically</Label>
+				</div>
+
 				<ul>{todoList}</ul>
 			</div>
 		);

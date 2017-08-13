@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import AddToDos from "./AddToDos";
 import ShowToDos from "./ShowToDos";
-import ToDoStore from "./ToDoStore";
+import toDoStore from "./toDoStore";
 import {observer, inject} from "mobx-react";
 import {observable, autorun} from "mobx";
+
 
 
 @observer
@@ -17,7 +18,6 @@ class ToDoList extends Component {
 			<div className="ToDoList">
 				<AddToDos/>
 				<ShowToDos/>  
-				{/* {ToDoStore.todos} */}
 			</div>
 		);
 	}

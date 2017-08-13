@@ -1,10 +1,26 @@
-.ToDoList {
-	margin: 50px;
-	font-size: 20px;
+.body {
+	margin: 15px 30%;
+	text-align: center;
+	background-color: lightgrey;
+	border: 20px double black;
+	border: border-box;
+	box-shadow: 20px 20px 20px darkgrey;
+	box-sizing: border-box;
 }
 
-#app-title {
+.title {
 	color: blue;
-	text-align: center;
-	margin: auto;
+	margin-top: 20px;
+}
+
+.ShowToDos {
+	margin-top: 50px;
+}
+
+#errorCreate {
+	color: red;
+}
+
+.submit-buttons {
+	margin-top: 10px;
 }
