@@ -1,0 +1,3 @@
+- conditional for cursor in style sheet
+- styling
+- sorting not working properly

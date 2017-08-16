@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {observer, inject} from "mobx-react";
 import {observable, autorun, computed} from "mobx";
 import toDoStore from "./toDoStore";
-import style from "./style";
+import {Label, Input} from "./style";
 
 
 @observer
@@ -47,6 +47,7 @@ class ShowToDos extends Component {
 		todo.complete = !todo.complete;
 	}
 
+	// TODO: doesn't work properly
 	// sort by priority
 	sortList(todoList) {
 		if (toDoStore.sorting === "priority") {
@@ -82,7 +83,7 @@ class ShowToDos extends Component {
 			<div className="ShowToDos">
 				<h1 className="title">Current Tasks</h1>
 				{/* <div>{toDoStore.filter}</div> */}
-				<input id="filter" className="todofilter" value={toDoStore.filter} onChange={(event) => this.todoFilter(event.target.value)} placeholder="filter tasks" />
+				<Input id="filter" className="todofilter" value={toDoStore.filter} onChange={(event) => this.todoFilter(event.target.value)} placeholder="filter tasks" />
 				<a href="#" onClick={toDoStore.clearComplete}>*Clear completed tasks*</a>
 
 				<div className="list-sorting" onChange={e => toDoStore.sorting = e.target.value} >

@@ -3,7 +3,7 @@ import {observer, inject} from "mobx-react";
 import {observable, autorun} from "mobx";
 import toDoStore from "./toDoStore";
 import ShowToDos from "./ShowToDos";
-import style from "./style";
+import {P, Button, Submit, Label, Input, Textarea} from "./style";
 
 @observer
 class AddToDos extends Component {
@@ -43,7 +43,7 @@ class AddToDos extends Component {
 
 					<div className="note-input">
 							<P>Optional Note/Description: </P>
-						<textarea className="dataInput" rows="3" cols="20"  value={toDoStore.inputDescription} onChange={e => toDoStore.inputDescription = e.target.value} placeholder="ask Senpai Steve for help..." />								
+						<Textarea className="dataInput" rows="3" cols="20"  value={toDoStore.inputDescription} onChange={e => toDoStore.inputDescription = e.target.value} placeholder="ask Senpai Steve for help..." />								
 					</div>
 
 					<div className="taskprio" onChange={e => toDoStore.inputPriority = e.target.value} > 
@@ -55,10 +55,10 @@ class AddToDos extends Component {
 					</div>
 
 					<div className="submit-buttons">
-						<Button value="CREATE TASK" onClick={() => this.createToDo()}/>	
-						<Button type="button" value="Reset all fields" onClick={() => toDoStore.resetData()}/>	
+						<Submit onClick={() => this.createToDo()}>CREATE TASK</Submit>
+						<Button onClick={() => toDoStore.resetData()}>RESET ALL FIELDS</Button>
 
-						<Button onClick={() => toDoStore.resetList()} value="REMOVE ALL TASKS" />	
+						<Button onClick={() => toDoStore.resetList()}>REMOVE ALL TASKS</Button>	
 					
 						<P id="errorCreate">{toDoStore.errorCreate}</P>
 					</div>

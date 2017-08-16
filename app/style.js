@@ -7,14 +7,18 @@ const Button = styled.button`
 	padding: 0.25em 1em;
 	border: 2px solid palevioletred;
 	border-radius: 3px;
-	cursor: ${toDoStore.inputTodo == "" || toDoStore.inputPriority == "" ? "not-allowed" : "pointer"};
+	cursor: pointer;
 `;
+
+const Submit = Button.extend`
+	cursor: ${toDoStore.inputTodo == ""  ? "not-allowed" : "pointer"};
+`;
+// TODO: conditional for cursor not working
 
 const P = styled.p `
 	font-size: 25px;
 	text-align: center;
 	margin: auto;
-	font-family: "Comic Sans";
 `;
 
 const Label = styled.label `
@@ -22,7 +26,6 @@ const Label = styled.label `
 	font-style: italic;
 	text-align: center;
 	margin: auto;
-	font-family: "Comic Sans";
 `;
 
 const Input = styled.input `
@@ -32,3 +35,16 @@ const Input = styled.input `
 	border-radius: 3px;
 	cursor: text;
 `;
+
+const Textarea = styled.textarea `
+	color: palevioletred;
+	font-size: 1em;
+	border: 2px solid palevioletred;
+	border-radius: 3px;
+	cursor: text;
+`;
+
+// export const Component = styled.input... ------- can also use export before instead of below
+
+// export default all;			// to export all and import with * as all -- bad practice, only if rlly all is needed
+export {Button, Submit, P, Label, Input, Textarea};
