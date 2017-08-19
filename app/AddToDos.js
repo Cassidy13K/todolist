@@ -4,7 +4,7 @@ import {observable, autorun} from "mobx";
 import toDoStore from "./toDoStore";
 import { createToDo, resetData, resetList, setToDo } from "./toDoStoreModifiers";
 import ShowToDos from "./ShowToDos";
-import {P, Button, Submit, Label, Input, Textarea} from "./style";
+import {P, Button, Submit, Label, Input, Textarea, Radio} from "./style";
 import styled from "styled-components";
 
 @observer
@@ -22,9 +22,11 @@ class AddToDos extends Component {
 
 	submitStyle () { 
 		console.log("test submitStyle");
-		/*`
-		cursor: ${toDoStore.inputTodo == ""  ? "not-allowed" : "pointer"};
-		`*/
+	// 	if (toDoStore.inputTodo !== "" && toDoStore.inputPriority !== "") {
+	// 		styled `cursor: pointer;`;
+	// 	} else {
+	// 		styled `cursor: not-allowed;`;
+	// 	}
 	}
 
 	render () {
@@ -50,10 +52,10 @@ class AddToDos extends Component {
 					{/* this doesn't work for priority cuz of delay {(event) => setToDo("priority", event.target.value)} */}
 					<div className="taskprio" onChange={(event) => setToDo("priority", event.target.value)} > 
 						<P>Choose priority of this task: </P><br></br>
-						<Input className="dataInput" type="radio" name="taskprio" value="high"  checked={toDoStore.inputPriority =="high"}/> <Label>High Prio</Label>
-						<Input className="dataInput" type="radio" name="taskprio" value="low" checked={toDoStore.inputPriority == "low"}/> <Label>Low Prio</Label>
-						<Input className="dataInput" type="radio" name="taskprio" value="recurring" checked={toDoStore.inputPriority == "recurring"}/> <Label>Recurring</Label>
-						<Input className="dataInput" type="radio" name="taskprio" value="none" checked={toDoStore.inputPriority == "none"}/> <Label>None / Note only</Label>				
+						<Label><Radio className="dataInput" type="radio" name="taskprio" value="high"  checked={toDoStore.inputPriority =="high"}/> High Prio</Label>
+						<Label><Radio className="dataInput" type="radio" name="taskprio" value="low" checked={toDoStore.inputPriority == "low"}/> Low Prio</Label>
+						<Label><Radio className="dataInput" type="radio" name="taskprio" value="recurring" checked={toDoStore.inputPriority == "recurring"}/> Recurring</Label>
+						<Label><Radio className="dataInput" type="radio" name="taskprio" value="none" checked={toDoStore.inputPriority == "none"}/> None / Note only</Label>				
 					</div>
 
 					<div className="submit-buttons">

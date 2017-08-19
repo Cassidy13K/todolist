@@ -3,7 +3,7 @@ import {observer, inject} from "mobx-react";
 import {observable, autorun, computed} from "mobx";
 import toDoStore from "./toDoStore";
 import {clearComplete, todoFilter, setSorting} from "./toDoStoreModifiers";
-import {Label, Input, Ul} from "./style";
+import {Label, Input, Ul, Radio} from "./style";
 
 
 @observer
@@ -84,9 +84,9 @@ class ShowToDos extends Component {
 				<a href="#" onClick={() => clearComplete()}>*Clear completed tasks*</a>
 
 				<div className="list-sorting" onChange={(event) => setSorting(event.target.value)} >
-					<input type="radio" name="sorting" value="none" checked={toDoStore.sorting == "none"} /> <Label>No sorting</Label>
-					<input type="radio" name="sorting" value="priority" checked={toDoStore.sorting == "priority"} /> <Label>Sort tasks by priority</Label>
-					<input  type="radio" name="sorting" value="ABC" checked={toDoStore.sorting == "ABC"} /> <Label>Sort tasks alphabetically</Label>
+					<Label><Radio type="radio" name="sorting" value="none" checked={toDoStore.sorting == "none"} /> No sorting</Label>
+					<Label><Radio type="radio" name="sorting" value="priority" checked={toDoStore.sorting == "priority"} /> Sort tasks by priority</Label>
+					<Label><Radio  type="radio" name="sorting" value="ABC" checked={toDoStore.sorting == "ABC"} /> Sort tasks alphabetically</Label>
 				</div>
 
 				<Ul>{todoList}</Ul>

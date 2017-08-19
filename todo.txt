@@ -1,5 +1,10 @@
 - conditional for cursor in style sheet
 - styling
+- add button enlarge on hover
+- fix button submit disabled
+- fix margin depending on browser-width --> responsive
+- put some space between sorting & filter and filter & remove completed text
+- change button text and placeholder font family
 
 FIX THIS
 

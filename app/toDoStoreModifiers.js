@@ -37,7 +37,7 @@ const resetData = () => {
 
 // resets all tasks & inputs & toDoStore
 const resetList = () => {				
-	if (confirm("Are you sure that you want to remove all your tasks?") == true ) {
+	if (confirm("Are you sure that you want to remove all your tasks?" + "\n" + "\n" + "WARNING: This action cannot be undone!") == true ) {
 		toDoStore.todos = [];
 		resetData();
 	}
