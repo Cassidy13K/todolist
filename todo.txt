@@ -1,3 +1,24 @@
 - conditional for cursor in style sheet
 - styling
-- sorting not working properly
+
+FIX THIS
+
+CALCULATOR
+
+1 file for logic functions
+don't initiate functions/ don't put them in a class (can't call function inside class)
+call real numbers with key not .keycode
+
+
+TO DO LIST
+
+sorting: remove defaultchecked, have checked derived from state
+
+also sort alphabetically (a, b => a.title > b.title)
+
+make numberoffunction + totalnumber for unsorted
+
+style fixes:
+button font
+make <ul> non-show-bulletpoints cuz using checkboxes
+put cursor enabled into input file not style file and call it in-line

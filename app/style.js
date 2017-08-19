@@ -1,5 +1,12 @@
 import styled from "styled-components";
-import toDoStore from "./toDoStore";
+import {injectGlobal} from "styled-components";
+
+// check if this also changes button font family
+injectGlobal`
+body{
+font-family: "Sedgwick Ave", cursive;
+}
+`;
 
 const Button = styled.button`
 	font-size: 1em;
@@ -10,15 +17,14 @@ const Button = styled.button`
 	cursor: pointer;
 `;
 
-const Submit = Button.extend`
-	cursor: ${toDoStore.inputTodo == ""  ? "not-allowed" : "pointer"};
-`;
-// TODO: conditional for cursor not working
-
 const P = styled.p `
 	font-size: 25px;
 	text-align: center;
 	margin: auto;
+`;
+
+const Ul = styled.ul `
+	list-style-type: none;
 `;
 
 const Label = styled.label `
@@ -47,4 +53,4 @@ const Textarea = styled.textarea `
 // export const Component = styled.input... ------- can also use export before instead of below
 
 // export default all;			// to export all and import with * as all -- bad practice, only if rlly all is needed
-export {Button, Submit, P, Label, Input, Textarea};
+export {Button, P, Label, Input, Textarea, Ul};

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import AddToDos from "./AddToDos";
 import ShowToDos from "./ShowToDos";
-import toDoStore from "./toDoStore";
 import {observer, inject} from "mobx-react";
 import {observable, autorun} from "mobx";
 // import * as style from "./style";						// this is how to import everything from the style file ---> type this to use: style.Button // style.Input etc.
